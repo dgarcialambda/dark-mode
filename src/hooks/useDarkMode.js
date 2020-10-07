@@ -1,21 +1,13 @@
-import React from "react";
-import { useLocalStorage } from "./useLocalStorage"
+
+import { useLocalStorage } from "./useLocalStorage";
+
 
 export const useDarkMode = (key, initialValues) => {
-    const [someValue, setSomeValue] = useLocalStorage(key, initialValues)
-    console.log(key, initialValues);
-    console.log(someValue);
-    
-    const handleChange = (e) =>  {
-        setSomeValue({
-            ...someValue, 
-            [e.target.name]: e.target.value
+    const [value, setValue] = useLocalStorage(initialValues, key);
 
-        });
-    }
-    const darkMode = 
-        darkMode ? "dark-mode App" : "App"
-     
-        
-    return [darkMode, someValue, handleChange]
+    const handleChanges = newValue => {
+        setValue(newValue)
+    };
+
+    return [value, setValue, handleChanges]
 }
